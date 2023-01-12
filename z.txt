@@ -1,0 +1,20 @@
+Database:
+run sql cmd - create database ttz_db;
+
+
+
+Backend:
+Create virtual env - python -m venv venv
+Activate env - venv\Scripts\activate
+Install Req libs - pip install -r req.txt
+Then  --  py manage.py makemigrations
+          py manage.py migrate
+          py manage.py createsuperuser
+          py py manage.py runserver
+
+
+
+Frontned:
+cd to frontend folder
+Run - npm i
+      npm run serve
