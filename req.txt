@@ -26,8 +26,7 @@ filelock==3.3.2
 fontawesomefree==6.0.0
 gunicorn==20.0.4
 idna==3.3
-mysqlclient==2.1.0
-Pillow==8.4.0
+#mysqlclient==2.1.0
 pipenv==2020.11.15
 pipreqs==0.4.11
 platformdirs==2.4.0

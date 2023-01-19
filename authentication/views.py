@@ -101,6 +101,7 @@ class LoginAPIView(APIView):
             'email': user.email,
         
             'auto_enable':user.auto_enable,
+            'time_interval':user.time_intervial,
             'name': user.first_name,
             'id': user.id
 
