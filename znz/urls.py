@@ -22,7 +22,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('auth/', include('authentication.urls')),
-    # path('', IndexTemplateView.as_view(), name="home"),
+    path('', IndexTemplateView.as_view(), name="home"),
     path('admin/', admin.site.urls),
     path('api/', include('tm_backend.urls')),
     

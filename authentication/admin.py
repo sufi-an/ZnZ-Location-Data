@@ -12,3 +12,6 @@ class UserAdmin(admin.ModelAdmin):
 admin.site.register(User, UserAdmin)
 
 
+admin.site.site_title = 'ZnZ Location App'
+admin.site.site_header = 'ZnZ Location App'
+

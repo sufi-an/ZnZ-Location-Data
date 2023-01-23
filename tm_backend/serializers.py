@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 
-from .models import  Category, District, Division, Location, Thana, Union, LocationPicture, locationAll, route
+from .models import  *
 
 
 class CategorySerializer(serializers.ModelSerializer):

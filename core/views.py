@@ -7,8 +7,8 @@ from django.views.generic import View
 # from core.utils import render_to_pdf #created in step 4
 
 
-class IndexTemplateView(LoginRequiredMixin, TemplateView):
+class IndexTemplateView(TemplateView):
 
     def get_template_names(self):
-        template_name = "index.html"
+        template_name = "core/index.html"
         return template_name

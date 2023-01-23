@@ -13,7 +13,7 @@ class Category(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.name)
 
 class Division(models.Model):
     name = models.CharField(max_length=150, null=True, blank=True)
@@ -21,7 +21,7 @@ class Division(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return str(self.id)
+        return str(self.name)
 
 class District(models.Model):
     division_id = models.ForeignKey(
@@ -31,19 +31,20 @@ class District(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return str(self.id)
+        return str(self.name)
+
 
 class Thana(models.Model):
-    district_id = models.ForeignKey(
-        District, on_delete=CASCADE, null=True)
     division_id = models.ForeignKey(
         Division, on_delete=CASCADE, null=True)
+    district_id = models.ForeignKey(
+        District, on_delete=CASCADE, null=True)
     name = models.CharField(max_length=150, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return str(self.id)
+        return str(self.name)
 
 
 
@@ -59,7 +60,7 @@ class Union(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return str(self.id)
+        return str(self.name)
 
 
 class LocationPicture(models.Model):
