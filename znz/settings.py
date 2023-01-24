@@ -103,8 +103,6 @@ WSGI_APPLICATION = 'znz.wsgi.application'
 #     }
 # }
 
-
-#znzitALbsM2@23s
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.mysql',
