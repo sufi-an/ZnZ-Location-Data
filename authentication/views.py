@@ -60,7 +60,7 @@ class LastUserViewSet(APIView):
 class RegisterAPIView(APIView):
     def post(self, request):
         data = request.data
-
+        print(data)
         if data['password'] != data['password_confirm']:
             raise APIException('Passwords do not match!')
 

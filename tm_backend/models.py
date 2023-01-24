@@ -116,7 +116,6 @@ class route(models.Model):
     def __str__(self):
         return str(self.id)
 
-
 class locationAll(models.Model):
     
     locationPicture_id = models.CharField(max_length=150, null=True, blank=True)
@@ -135,17 +134,17 @@ class locationAll(models.Model):
     address = models.CharField(max_length=150, null=True, blank=True)
     app_type = models.CharField(max_length=150, null=True, blank=True)
     district_name = models.CharField(max_length=150, null=True, blank=True)
+    category_name = models.CharField(max_length=150, null=True, blank=True)
     division_name = models.CharField(max_length=150, null=True, blank=True)
     union_name = models.CharField(max_length=150, null=True, blank=True)
     thana_name = models.CharField(max_length=150, null=True, blank=True)
-    first_name = models.CharField(max_length=150, null=True, blank=True)
+    username = models.CharField(max_length=150, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         managed = False
         db_table = 'location_all'
-
 
 
 
