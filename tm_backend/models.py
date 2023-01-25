@@ -116,6 +116,9 @@ class route(models.Model):
     def __str__(self):
         return str(self.id)
 
+
+    
+
 class locationAll(models.Model):
     
     locationPicture_id = models.CharField(max_length=150, null=True, blank=True)

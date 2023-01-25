@@ -45,8 +45,21 @@ class routeSerializer(serializers.ModelSerializer):
         model = route
         fields = '__all__'
 
+# class locationAllSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = locationAll
+#         fields = '__all__'
+
 class locationAllSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = locationAll
-        fields = '__all__'
+    division_id = DivisionSerializer(read_only=True)
+    district_id = DistrictSerializer(read_only=True)
+    thana_id  = ThanaSerializer(read_only=True)
+    union_id = UnionSerializer(read_only=True)
     
+    category_id = CategorySerializer(read_only=True)
+    #url = serializers.HyperlinkedIdentityField(view_name="book-detail", lookup_field='id', read_only=True)
+    locationPicture_id = LocationPictureSerializer( read_only=True)
+    class Meta:
+        model = Location
+        fields = [ 'id', 'lat','long', 'name', 'landmark', 'app_type', 'address', 'user_id','division_id_id', 'locationPicture_id', 'category_id', 'district_id', 'thana_id','union_id','division_id','created_at','updated_at',]
+        lookup_field = 'id'
