@@ -1,3 +1,5 @@
+
+
 from rest_framework import serializers
 
 
@@ -50,16 +52,28 @@ class routeSerializer(serializers.ModelSerializer):
 #         model = locationAll
 #         fields = '__all__'
 
+class UserwithoutPassSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = [
+    'id',
+    'username',
+    'phone',
+    'auto_enable',
+    'time_intervial',
+    'vehicle_type',
+        ]
+
 class locationAllSerializer(serializers.ModelSerializer):
     division_id = DivisionSerializer(read_only=True)
     district_id = DistrictSerializer(read_only=True)
     thana_id  = ThanaSerializer(read_only=True)
     union_id = UnionSerializer(read_only=True)
-    
+    user = UserwithoutPassSerializer(read_only=True)
     category_id = CategorySerializer(read_only=True)
     #url = serializers.HyperlinkedIdentityField(view_name="book-detail", lookup_field='id', read_only=True)
-    locationPicture_id = LocationPictureSerializer( read_only=True)
+    locationPicture = LocationPictureSerializer( read_only=True)
     class Meta:
         model = Location
-        fields = [ 'id', 'lat','long', 'name', 'landmark', 'app_type', 'address', 'user_id','division_id_id', 'locationPicture_id', 'category_id', 'district_id', 'thana_id','union_id','division_id','created_at','updated_at',]
+        fields = [ 'id', 'lat','long', 'name', 'landmark', 'app_type', 'address', 'user_id','division_id_id', 'locationPicture', 'category_id', 'district_id', 'thana_id','union_id','division_id','created_at','updated_at','user']
         lookup_field = 'id'
