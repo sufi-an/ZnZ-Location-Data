@@ -87,5 +87,7 @@ class locationAllViewSet(viewsets.ModelViewSet):
     queryset=Location.objects.all()
     serializer_class = locationAllSerializer
     http_method_names = ['get']
-    filterset_fields = {'user':['exact'], 'id':['exact']}
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['user', 'id']
+    # filterset_fields = {'user':['exact'], 'id':['exact']}
     
