@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'django-insecure-n23zy&w_$aa1w65m+*3p$7zggijsjuxu3x$ok*uw!di!fk9pr^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 CORS_ORIGIN_ALLOW_ALL = True
@@ -96,23 +96,23 @@ WSGI_APPLICATION = 'znz.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
 DATABASES = {
-     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'znz_db',
-        'USER': 'znz_user',
-        'PASSWORD': 'znzitALbsM2@23s',
-        'HOST': 'localhost',
-        'PORT': '3306',
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# DATABASES = {
+#      'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'znz_db',
+#         'USER': 'znz_user',
+#         'PASSWORD': 'znzitALbsM2@23s',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -150,13 +150,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static_env'),
-]
-
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_env', '/home/am/code/ZnZ-Location-Data/static','/home/am/code/ZnZ-Location-Data/static/admin')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# STATIC_URL = '/static/'
+
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static_env'),
+# ]
+
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 MEDIA_URL = 'media/'
