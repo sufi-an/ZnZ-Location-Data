@@ -9,6 +9,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import permissions, renderers, viewsets, generics
+from django_filters import rest_framework as filters
 
 from .models import *
 from .serializers import *
@@ -86,5 +87,6 @@ class locationAllViewSet(viewsets.ModelViewSet):
     queryset=Location.objects.all()
     serializer_class = locationAllSerializer
     http_method_names = ['get']
-    filterset_fields = {'user':['exact']}
+    filter_backends = (filters.DjangoFilterBackend)
+    filterset_fields = ('user', 'id')
     
