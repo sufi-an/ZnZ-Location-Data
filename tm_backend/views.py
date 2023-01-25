@@ -42,7 +42,7 @@ class ThanaViewSet(viewsets.ModelViewSet):
 
 class LocationViewSet(viewsets.ModelViewSet):
     serializer_class = LocationSerializer
-    queryset = Location.objects.all().values
+    queryset = Location.objects.all()
     filterset_fields = {'division_id':['exact'], 'district_id':['exact'],'thana_id':['exact'],'union_id':['exact'],'user':['exact']}
 
 

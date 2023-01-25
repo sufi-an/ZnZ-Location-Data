@@ -71,14 +71,14 @@ class LocationPicture(models.Model):
 
 class Location(models.Model):
     locationPicture = models.ForeignKey(
-        LocationPicture, on_delete=SET_NULL, null=True)
+        LocationPicture, on_delete=SET_NULL, null=True,blank=True)
     division_id = models.ForeignKey(
         Division, on_delete=CASCADE, null=True)
     user = models.ForeignKey(
         User, on_delete=SET_NULL, null=True
     )
     category_id = models.ForeignKey(
-        Category, on_delete=CASCADE, null=True
+        Category, on_delete=CASCADE, null=True,blank=True
     )
     district_id = models.ForeignKey(
         District, on_delete=CASCADE, null=True
@@ -87,7 +87,7 @@ class Location(models.Model):
         Thana, on_delete=CASCADE, null=True
     )
     union_id = models.ForeignKey(
-        Union, on_delete=CASCADE, null=True
+        Union, on_delete=CASCADE, null=True,blank=True
     )
     name = models.CharField(max_length=150, null=True, blank=True)
     lat_long = models.CharField(max_length=250, null=True, blank=True)
