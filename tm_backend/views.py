@@ -8,7 +8,7 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
-
+from rest_framework import permissions, renderers, viewsets, generics
 
 from .models import *
 from .serializers import *
@@ -85,4 +85,6 @@ class routeViewSet(viewsets.ModelViewSet):
 class locationAllViewSet(viewsets.ModelViewSet):
     queryset=Location.objects.all()
     serializer_class = locationAllSerializer
+    http_method_names = ['get']
+    filterset_fields = {'user':['exact']}
     

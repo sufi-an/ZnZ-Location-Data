@@ -63,11 +63,13 @@ class Union(models.Model):
         return str(self.name)
 
 
+
 class LocationPicture(models.Model):
    
     picture = models.ImageField(null = True, blank = True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
 
 class Location(models.Model):
     locationPicture = models.ForeignKey(
@@ -103,6 +105,12 @@ class Location(models.Model):
     
     def __str__(self):
         return str(self.id)
+
+    # this is manual process to save, default union = NA
+    def save(self, *args, **kwargs):
+        if not self.union_id:
+            self.union_id = Union.objects.get(id=3607)
+        return super(Location, self).save(*args, **kwargs)
 
 class route(models.Model):
     user = models.ForeignKey(
