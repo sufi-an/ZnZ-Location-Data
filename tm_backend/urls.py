@@ -26,3 +26,6 @@ router.register('locationall', locationAllViewSet)
 urlpatterns = [
     path('', include(router.urls)),
 ]
+
+
+## re_path(r'^locationall/$', locationAllViewSet.as_view(),name='locationall'),
