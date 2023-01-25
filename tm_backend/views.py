@@ -85,9 +85,6 @@ class routeViewSet(viewsets.ModelViewSet):
 class locationAllViewSet(viewsets.ModelViewSet):
     queryset=Location.objects.all()
     serializer_class = locationAllSerializer
-    permission_classes = [permissions.IsAuthenticated]
     http_method_names = ['get']
-    def get_queryset(self):
-        # project_id may be None
-        return self.queryset.filter(user=self.request.user)
+    filterset_fields = {'user':['exact']}
     
