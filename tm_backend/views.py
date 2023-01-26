@@ -87,7 +87,7 @@ class routeViewSet(viewsets.ModelViewSet):
     
 
 class locationAllViewSet(viewsets.ModelViewSet):
-    pagination_class = CustomPagination
+    #pagination_class = CustomPagination
     queryset=Location.objects.all()
     serializer_class = locationAllSerializer
     http_method_names = ['get']
