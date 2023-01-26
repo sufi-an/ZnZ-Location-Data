@@ -4,7 +4,7 @@ from django import views
 from rest_framework.decorators import action
 from rest_framework import status
 from rest_framework import viewsets, filters
-from rest_framework.pagination import PageNumberPagination
+from rest_framework import pagination
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
@@ -15,8 +15,11 @@ from .models import *
 from .serializers import *
 
 
-class Pagination(PageNumberPagination):
-    page_size = 10
+class CustomPagination(pagination.PageNumberPagination):
+    page_size = 50
+    page_size_query_param = 'page_size'
+    max_page_size = 50
+    page_query_param = 'p'
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -84,6 +87,7 @@ class routeViewSet(viewsets.ModelViewSet):
     
 
 class locationAllViewSet(viewsets.ModelViewSet):
+    pagination_class = CustomPagination
     queryset=Location.objects.all()
     serializer_class = locationAllSerializer
     http_method_names = ['get']
