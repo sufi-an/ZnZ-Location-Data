@@ -94,4 +94,11 @@ class locationAllViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['user', 'id']
     # filterset_fields = {'user':['exact'], 'id':['exact']}
-    
+
+class locationAllPaginationViewset(viewsets.ModelViewSet):
+    pagination_class = CustomPagination
+    queryset=Location.objects.all()
+    serializer_class = locationAllSerializer
+    http_method_names = ['get']
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['user', 'id']

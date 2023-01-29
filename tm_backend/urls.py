@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 
 
 
-from .views import CategoryViewSet, DistrictViewSet, DivisionViewSet, LocationViewSet, ThanaViewSet, UnionViewSet, LocationPictureViewSet, locationAllViewSet, routeViewSet
+from .views import CategoryViewSet, DistrictViewSet, DivisionViewSet, LocationViewSet, ThanaViewSet, UnionViewSet,locationAllPaginationViewset, LocationPictureViewSet, locationAllViewSet, routeViewSet
 
 
 router = DefaultRouter()
@@ -19,6 +19,7 @@ router.register('union', UnionViewSet)
 router.register('divison', DivisionViewSet)
 router.register('route', routeViewSet)
 router.register('locationall', locationAllViewSet)
+router.register('location-all-pagination',locationAllPaginationViewset)
 
 
 
