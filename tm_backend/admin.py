@@ -5,9 +5,6 @@ from import_export import resources
 from import_export.admin import ExportActionMixin, ImportExportActionModelAdmin, ExportMixin
 #from .models import TruckTypeMaster, Truck, Factory, ProductMaster, Requisition, Trips, Item, req_item
 
-class UnionAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'Thana_id', 'district_id', 'division_id')
-
 
 class LocationResource(resources.ModelResource):
 
@@ -36,11 +33,58 @@ class RouteAdmin(ExportMixin, admin.ModelAdmin):
     list_filter = ('user', 'created_at')
 
 
+class DivisionResource(resources.ModelResource):
+    class Meta:
+        model = Division
+        fields = ('id', 'name',)
+
+
+class DivisionAdmin(ImportExportActionModelAdmin):
+    resource_classes = [DivisionResource]
+    list_display = ('id', 'name', 'created_at')
+
+
+class DistrictResource(resources.ModelResource):
+    class Meta:
+        model = District
+        fields = ('id', 'division_id', 'name',)
+
+
+class DistrictAdmin(ImportExportActionModelAdmin):
+    resource_classes = [DistrictResource]
+    list_display = ('id', 'division_id', 'name', 'created_at')
+    list_filter = ('division_id', )
+
+
+class ThanaResource(resources.ModelResource):
+    class Meta:
+        model = Thana
+        fields = ('id', 'division_id', 'district_id', 'name',)
+
+
+class ThanaAdmin(ImportExportActionModelAdmin):
+    resource_classes = [ThanaResource]
+    list_display = ('id', 'division_id', 'district_id', 'name', 'created_at')
+    list_filter = ('division_id', 'district_id')
+
+
+class UnionResource(resources.ModelResource):
+    class Meta:
+        model = Union
+        fields = ('id', 'division_id', 'district_id', 'Thana_id', 'name',)
+
+
+class UnionAdmin(ImportExportActionModelAdmin):
+    resource_classes = [UnionResource]
+    list_display = ('id', 'name', 'division_id', 'district_id', 'Thana_id', 'created_at')
+    list_filter = ('division_id', 'district_id')
+
+
 # from .models import Customer
 admin.site.register(Category)
-admin.site.register(Division)
-admin.site.register(District)
-admin.site.register(Thana)
+admin.site.register(Division, DivisionAdmin)
+admin.site.register(District, DistrictAdmin)
+admin.site.register(Thana, ThanaAdmin)
 admin.site.register(Union, UnionAdmin)
 admin.site.register(LocationPicture)
 admin.site.register(Location, LocationAdmin)
