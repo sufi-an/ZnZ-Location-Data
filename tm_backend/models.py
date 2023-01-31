@@ -109,7 +109,7 @@ class Location(models.Model):
     # this is manual process to save, default union = NA
     def save(self, *args, **kwargs):
         if not self.union_id:
-            self.union_id = Union.objects.get(id=3607)
+            self.union_id = Union.objects.get(id=4623)
         return super(Location, self).save(*args, **kwargs)
 
 class route(models.Model):
