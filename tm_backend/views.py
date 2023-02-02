@@ -24,23 +24,23 @@ class CustomPagination(pagination.PageNumberPagination):
 
 class CategoryViewSet(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
-    queryset = Category.objects.all()
+    queryset = Category.objects.all().order_by('name')
 
 
 class DivisionViewSet(viewsets.ModelViewSet):
     serializer_class = DivisionSerializer
-    queryset = Division.objects.all()
+    queryset = Division.objects.all().order_by('name')
 
 
 class DistrictViewSet(viewsets.ModelViewSet):
     serializer_class = DistrictSerializer
-    queryset = District.objects.all()
+    queryset = District.objects.all().order_by('name')
     filterset_fields = {'division_id':['exact']}
 
 
 class ThanaViewSet(viewsets.ModelViewSet):
     serializer_class = ThanaSerializer
-    queryset = Thana.objects.all()
+    queryset = Thana.objects.all().order_by('name')
     filterset_fields = {'division_id':['exact'], 'district_id':['exact']}
 
 
@@ -53,7 +53,7 @@ class LocationViewSet(viewsets.ModelViewSet):
 
 class UnionViewSet(viewsets.ModelViewSet):
     serializer_class = UnionSerializer
-    queryset = Union.objects.all()
+    queryset = Union.objects.all().order_by('name')
     filterset_fields = {'division_id':['exact'], 'district_id':['exact'],'Thana_id':['exact']}
 
 
@@ -95,6 +95,7 @@ class locationAllViewSet(viewsets.ModelViewSet):
     filterset_fields = ['user', 'id']
     # filterset_fields = {'user':['exact'], 'id':['exact']}
 
+
 class locationAllPaginationViewset(viewsets.ModelViewSet):
     pagination_class = CustomPagination
     queryset=Location.objects.all()
@@ -102,3 +103,4 @@ class locationAllPaginationViewset(viewsets.ModelViewSet):
     http_method_names = ['get']
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['user', 'id']
+

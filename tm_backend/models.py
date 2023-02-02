@@ -6,9 +6,20 @@ from django.db.models.deletion import SET_NULL
 from authentication.models import User
 
 
+APP_TYPE = (
+    ('M', 'Mobile'),
+    ('W', 'Web'),
+)
+
+STATUS_CHOICES = (
+    ('D', 'Draft'),
+    ('P', 'Published'),
+)
+
+
 class Category(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
-    status = models.CharField(max_length=100, null=True, blank=True)
+    status = models.CharField(choices=STATUS_CHOICES, max_length=1, default='P')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -47,7 +58,6 @@ class Thana(models.Model):
         return str(self.name)
 
 
-
 class Union(models.Model):
     division_id = models.ForeignKey(
         Division, on_delete=CASCADE, null=True)
@@ -63,9 +73,7 @@ class Union(models.Model):
         return str(self.name)
 
 
-
 class LocationPicture(models.Model):
-   
     picture = models.ImageField(null = True, blank = True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -98,7 +106,7 @@ class Location(models.Model):
     name = models.CharField(max_length=150, null=True, blank=True)
     landmark = models.CharField(max_length=150, null=True, blank=True)
     address = models.CharField(max_length=150, null=True, blank=True)
-    app_type = models.CharField(max_length=150, null=True, blank=True)
+    app_type = models.CharField(choices=APP_TYPE, max_length=1, default='M')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
@@ -111,6 +119,7 @@ class Location(models.Model):
         if not self.union_id:
             self.union_id = Union.objects.get(id=4623)
         return super(Location, self).save(*args, **kwargs)
+
 
 class route(models.Model):
     user = models.ForeignKey(
@@ -125,10 +134,7 @@ class route(models.Model):
         return str(self.id)
 
 
-    
-
 class locationAll(models.Model):
-    
     locationPicture_id = models.CharField(max_length=150, null=True, blank=True)
     division_id_id = models.CharField(max_length=150, null=True, blank=True)
     user_id = models.CharField(max_length=150, null=True, blank=True)
@@ -158,5 +164,17 @@ class locationAll(models.Model):
         db_table = 'location_all'
 
 
+class AssignTask(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=SET_NULL, null=True
+    )
+    task_start_date = models.DateField()
+    task_end_date = models.DateField()
+    task_assign = models.CharField(max_length=500, null=True, blank=True)
+    is_completed = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return str(self.task_assign)
     

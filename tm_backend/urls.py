@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 
 
 
-from .views import CategoryViewSet, DistrictViewSet, DivisionViewSet, LocationViewSet, ThanaViewSet, UnionViewSet,locationAllPaginationViewset, LocationPictureViewSet, locationAllViewSet, routeViewSet
+from .views import *
 
 
 router = DefaultRouter()

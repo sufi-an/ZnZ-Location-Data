@@ -66,6 +66,7 @@ class ThanaAdmin(ImportExportActionModelAdmin):
     resource_classes = [ThanaResource]
     list_display = ('id', 'division_id', 'district_id', 'name', 'created_at')
     list_filter = ('division_id', 'district_id')
+    search_fields = ['name', 'district_id']
 
 
 class UnionResource(resources.ModelResource):
@@ -78,6 +79,7 @@ class UnionAdmin(ImportExportActionModelAdmin):
     resource_classes = [UnionResource]
     list_display = ('id', 'name', 'division_id', 'district_id', 'Thana_id', 'created_at')
     list_filter = ('division_id', 'district_id')
+    search_fields = ['name', 'district_id', 'Thana_id']
 
 
 # from .models import Customer

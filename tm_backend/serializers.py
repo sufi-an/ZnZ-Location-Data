@@ -1,9 +1,7 @@
-
-
 from rest_framework import serializers
-
-
 from .models import  *
+from django.db.models import Count
+from rest_framework import permissions, renderers, viewsets, generics, mixins
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -77,3 +75,4 @@ class locationAllSerializer(serializers.ModelSerializer):
         model = Location
         fields = [ 'id', 'lat','long', 'name', 'landmark', 'app_type', 'address', 'user_id','division_id_id', 'locationPicture', 'category_id', 'district_id', 'thana_id','union_id','division_id','created_at','updated_at','user']
         lookup_field = 'id'
+
