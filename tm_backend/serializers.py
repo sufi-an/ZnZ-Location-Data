@@ -40,6 +40,7 @@ class LocationPictureSerializer(serializers.ModelSerializer):
         model = LocationPicture
         fields = '__all__'
 
+
 class routeSerializer(serializers.ModelSerializer):
     class Meta:
         model = route
@@ -76,3 +77,4 @@ class locationAllSerializer(serializers.ModelSerializer):
         fields = [ 'id', 'lat','long', 'name', 'landmark', 'app_type', 'address', 'user_id','division_id_id', 'locationPicture', 'category_id', 'district_id', 'thana_id','union_id','division_id','created_at','updated_at','user']
         lookup_field = 'id'
 
+        

@@ -13,6 +13,7 @@ from django_filters import rest_framework as filters
 
 from .models import *
 from .serializers import *
+from .filters import *
 
 
 class CustomPagination(pagination.PageNumberPagination):
@@ -104,3 +105,27 @@ class locationAllPaginationViewset(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['user', 'id']
 
+
+class UserLocationCountViewset(generics.ListAPIView):
+    queryset = Location.objects.all()
+    serializer_class = LocationSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_class = LocationFilter
+    # filterset_fields = ('user', {'created_at':['date__range']})
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset()).count()
+        #result_list = list(queryset.values('id').annotate(count=Count('id')))
+        return Response({'total_location':queryset})
+    
+
+
+class UserRouteCountViewset(generics.ListAPIView):
+    queryset = route.objects.all()
+    serializer_class = routeSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_class = RouteFilter
+    # filterset_fields = ('user', {'created_at':['date__range']})
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset()).count()
+        #result_list = list(queryset.values('id').annotate(count=Count('id')))
+        return Response({'total_route':queryset})

@@ -24,8 +24,13 @@ router.register('location-all-pagination',locationAllPaginationViewset)
 
 
 
+
 urlpatterns = [
     path('', include(router.urls)),
+    path('user-location-count/', UserLocationCountViewset.as_view(),
+                       name='user-location-count'),
+    path('user-route-count/', UserRouteCountViewset.as_view(),
+                       name='user-route-count'),
 ]
 
 
